@@ -1,8 +1,15 @@
 from UCISB import *
 
 sprite = Sprite()
+sprite.Fade()
+sprite.Move()
+sprite.MoveX()
+sprite.MoveY()
+sprite.Scale()
+sprite.Rotate()
+sprite.Color()
 
 path = r"storyboard.osb"
-Storyboard.write(path)
+Storyboard.Write(path)
 
 print "Program complete"

@@ -1,8 +1,8 @@
 sprites = []
 
-def write(path="storyboard.osb"):
-    data = ""
+def Write(path="storyboard.osb"):
+    data = "[Events]\n"
     for sprite in sprites:
-        data += sprite.write() + "\n"
+        data += sprite.Write()
     with open(path, 'w') as output:
         output.write(data)
