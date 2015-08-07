@@ -12,4 +12,4 @@ sprite.Color()
 path = r"storyboard.osb"
 Storyboard.Write(path)
 
-print "Program complete"
+print "Storyboard generation complete"
