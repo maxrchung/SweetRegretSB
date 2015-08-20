@@ -38,7 +38,7 @@ class ModeDescriptor(object):
 def getmode(mode):
     if not _modes:
         # initialize mode cache
-        from PIL import Image
+        from . import Image
         # core modes
         for m, (basemode, basetype, bands) in Image._MODEINFO.items():
             _modes[m] = ModeDescriptor(m, bands, basemode, basetype)

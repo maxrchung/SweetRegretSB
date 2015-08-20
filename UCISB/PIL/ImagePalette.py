@@ -18,7 +18,7 @@
 
 import array
 import warnings
-from PIL import ImageColor
+from . import ImageColor
 
 
 class ImagePalette(object):
@@ -210,7 +210,7 @@ def load(filename):
 
     if not lut:
         try:
-            from PIL import GimpPaletteFile
+            from . import GimpPaletteFile
             fp.seek(0)
             p = GimpPaletteFile.GimpPaletteFile(fp)
             lut = p.getpalette()
@@ -221,7 +221,7 @@ def load(filename):
 
     if not lut:
         try:
-            from PIL import GimpGradientFile
+            from . import GimpGradientFile
             fp.seek(0)
             p = GimpGradientFile.GimpGradientFile(fp)
             lut = p.getpalette()
@@ -232,7 +232,7 @@ def load(filename):
 
     if not lut:
         try:
-            from PIL import PaletteFile
+            from . import PaletteFile
             fp.seek(0)
             p = PaletteFile.PaletteFile(fp)
             lut = p.getpalette()

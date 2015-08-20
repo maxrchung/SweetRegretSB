@@ -32,8 +32,8 @@
 
 import numbers
 
-from PIL import Image, ImageColor
-from PIL._util import isStringType
+from . import Image, ImageColor
+from ._util import isStringType
 
 try:
     import warnings
@@ -131,7 +131,7 @@ class ImageDraw(object):
     def getfont(self):
         if not self.font:
             # FIXME: should add a font repository
-            from PIL import ImageFont
+            from . import ImageFont
             self.font = ImageFont.load_default()
         return self.font
 
@@ -369,11 +369,11 @@ def getdraw(im=None, hints=None):
     handler = None
     if not hints or "nicest" in hints:
         try:
-            from PIL import _imagingagg as handler
+            from . import _imagingagg as handler
         except ImportError:
             pass
     if handler is None:
-        from PIL import ImageDraw2 as handler
+        from . import ImageDraw2 as handler
     if im:
         im = handler.Draw(im)
     return im, handler
