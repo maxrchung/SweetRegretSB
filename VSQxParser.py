@@ -1,6 +1,6 @@
 import xml.etree.ElementTree as ET
 
-tree = ET.parse("finalshit.vsqx")
+tree = ET.parse("finalshitv5.vsqx")
 root = tree.getroot()
 
 with open("timingSheet.txt", "w") as output:

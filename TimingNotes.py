@@ -25,7 +25,7 @@ punctuations.pop(0)
 
 imageCounter = -1
 counter = 0
-text = ""
+text = []
 with open("timingSheet.txt", 'r') as timingSheet:
     timings = timingSheet.readlines()
     for time in range(len(timings)):
@@ -33,6 +33,7 @@ with open("timingSheet.txt", 'r') as timingSheet:
 
     with open("timingNotes.txt", "w") as timingNotes:
         firstCharacter = True
+        previousCharacter = ""
         for line in lyricLines:
             for character in line:
                 if counter >= len(timings):
@@ -49,17 +50,36 @@ with open("timingSheet.txt", 'r') as timingSheet:
                         break
                 if not isPunctuation:
                     if character != '~':
-                        imageCounter += 1
-                        text += timings[counter] + ' ' + str(imageCounter) + ' ' + \
-                                character.encode(encoding='utf-8') + ' ' + \
-                                repr(character) + '\n'
-                        counter += 1
+                        if previousCharacter == '\\':
+                            counter -= 1
+                            previousLine = text[len(text) - 1]
+                            split = previousLine.split(' ')
+                            split[0] = timings[counter]
+                            text[len(text) - 1] = ' '.join(split)
+
+                        if character != '\\':
+                            imageCounter += 1
+                            text.append(timings[counter] + ' ' + str(imageCounter) + ' ' + \
+                                    character.encode(encoding='utf-8') + ' ' + \
+                                    repr(character))
+                            counter += 1
                     else:
-                        text += timings[counter] + ' ' + str(imageCounter) + '\n'
                         counter += 1
                 else:
                     imageCounter += 1
-                    text += timings[counter-1] + ' ' + str(imageCounter) + '\n'
+                    previousLine = text[len(text) - 1]
+                    split = previousLine.split(' ')
+                    previousTiming = split[0]
+                    text.append(previousTiming + ' ' + str(imageCounter) + ' ' + \
+                                character.encode(encoding='utf-8') + ' ' + \
+                                repr(character))
 
-            text += "EOL" + '\n'
-        timingNotes.write(text)
+                previousCharacter = character
+
+            text.append("EOL")
+        data = ""
+        for line in text:
+            data += line + '\n'
+        timingNotes.write(data)
+
+print "Timing notes generation complete"
