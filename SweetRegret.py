@@ -47,7 +47,7 @@ multiplyFactor = 2.0
 titleFadeOut = fadeOutTime
 
 blackBg = Sprite("blackBG.png", midX, midY, layer=Layer.Background)
-blackBg.Move(0, producedByEnd + 1333, midX, midY, midX, midY)
+blackBg.Move(-1000, producedByEnd + 1333, midX, midY, midX, midY)
 blackBg.Fade(producedByEnd, producedByEnd + 1333, 1.0, 0.0)
 
 englishTitle = [] # (orangeBorder, greenBorder, blackText)
